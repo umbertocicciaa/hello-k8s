@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-pod
+spec:
+  containers:
+  - name: frontend-container
+    image: ghcr.io/umbertocicciaa/hello-k8s/frontend:main
+    ports:
+    - containerPort: 80
+  imagePullSecrets:
+  - name: ghcr-secret
