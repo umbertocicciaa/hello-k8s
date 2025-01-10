@@ -9,7 +9,7 @@
     <h1>Welcome to the Frontend Service</h1>
     <div id="results"></div>
     <script>
-        fetch('http://localhost:5001/api/results')
+        fetch('http://backend:5001/api/results')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('results').innerText = JSON.stringify(data);
