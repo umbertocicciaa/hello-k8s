@@ -1,18 +1,24 @@
 from flask import Flask, jsonify
 import redis
 from flask_cors import CORS
+import os 
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
 
 def init_db():
-    r = redis.Redis(host='db', port=6379, decode_responses=True)
-    r.rpush('your_list', 'item1', 'item2', 'item3')
+    redis_host = os.getenv('REDIS_HOST', 'redis')
+    redis_port = os.getenv('REDIS_PORT', '6379')
+    r = redis.Redis(host=redis_host, port=redis_port)
+    r.rpush('list', 'item1', 'item2', 'item3') 
+
 
 def get_db_results():
-    r = redis.Redis(host='db', port=6379, decode_responses=True)
-    results = r.lrange('your_list', 0, -1)
-    return results
+    redis_host = os.getenv('REDIS_HOST', 'redis')
+    redis_port = os.getenv('REDIS_PORT', '6379')
+    r = redis.Redis(host=redis_host, port=redis_port)
+    results = r.lrange('list', 0, -1)
+    return [str(item) for item in results]
 
 @app.route('/api/results', methods=['GET'])
 def results():
