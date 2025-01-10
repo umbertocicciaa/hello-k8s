@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend-pod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-pod
+  template:
+    metadata:
+      labels:
+        app: backend-pod
+    spec:
+      containers:
+      - name: backend-container
+        image: ghcr.io/umbertocicciaa/hello-k8s/backend:main@sha256:549b944b0ec36ab6bb9031d954191a685bbd8b0879da2c5e5dcb554678af3ae7
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS_HOST
+          value: redis
+        - name: REDIS_PORT
+          value: "6379"
+      imagePullSecrets:
+      - name: ghcr-secret

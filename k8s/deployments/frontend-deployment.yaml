@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend-pod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-pod
+  template:
+    metadata:
+      labels:
+        app: frontend-pod
+    spec:
+      containers:
+      - name: frontend-container
+        image: ghcr.io/umbertocicciaa/hello-k8s/frontend:main@sha256:f86a2c13eba8c9637d269d6c47b342af28fdd9e46f16eeed0269eb7e6c000fca
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: ghcr-secret
