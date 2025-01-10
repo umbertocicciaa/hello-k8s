@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: ghcr.io/umbertocicciaa/hello-k8s/frontend:main@sha256:f86a2c13eba8c9637d269d6c47b342af28fdd9e46f16eeed0269eb7e6c000fca
+        image: ghcr.io/umbertocicciaa/hello-k8s/frontend:main@sha256:07a047b6369301ff31ed22153c6f16dad60162477f4f978d45605d879c55ffd3
         ports:
-        - containerPort: 80
+        - containerPort: 5000
       imagePullSecrets:
       - name: ghcr-secret

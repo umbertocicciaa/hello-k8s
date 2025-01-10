@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: ghcr.io/umbertocicciaa/hello-k8s/backend:main@sha256:549b944b0ec36ab6bb9031d954191a685bbd8b0879da2c5e5dcb554678af3ae7
+        image: ghcr.io/umbertocicciaa/hello-k8s/backend:main@sha256:dc6ef54d674ff9a2dc912280a0cb9bf980bf0e122991c01449f9bf9338347514
         ports:
-        - containerPort: 80
+        - containerPort: 5001
         env:
         - name: REDIS_HOST
           value: redis
